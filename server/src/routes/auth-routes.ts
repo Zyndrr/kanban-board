@@ -12,8 +12,9 @@ export const login = async (req: Request, res: Response) => {
     const secretKey = process.env.JWT_SECRET_KEY || "";
     const token = jwt.sign({ username }, secretKey, { expiresIn: "1h" });
     res.json({ token });
+  } else {
+    res.sendStatus(401);
   }
-  res.sendStatus(401);
 };
 
 const router = Router();
